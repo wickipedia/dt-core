@@ -60,6 +60,16 @@ events:
     topic: "joy_mapper_node/deep_learn_toggle"
     msg_type: "BoolStamped"
     trigger: False
+  cnn_lane_following_on:
+    default: False
+    topic: "joy_mapper_node/cnn_lane_toggle"
+    msg_type: BoolStamped
+    trigger: True
+  cnn_lane_following_off:
+    default: True
+    topic: "joy_mapper_node/cnn_lane_toggle"
+    msg_type: BoolStamped
+    trigger: False
 
   charging_exit:
     default: False

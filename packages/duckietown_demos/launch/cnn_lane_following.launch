@@ -23,7 +23,7 @@
 		<arg name="/lane_following/line_detection" default="false" />
 
 		<arg name="lane_following" value="true"/>
-		<arg name="/lane_following/lane_controller" value="true"/>
+		<arg name="/lane_following/lane_controller" value="false"/>
 
 
 		<arg name="vehicle_avoidance" default="false"/>

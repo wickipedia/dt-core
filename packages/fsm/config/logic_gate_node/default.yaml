@@ -60,6 +60,16 @@ events:
     topic: "joy_mapper_node/deep_learn_toggle"
     msg_type: "BoolStamped"
     trigger: False
+  cnn_lane_following_on:
+    default: False
+    topic: "joy_mapper_node/cnn_lane_toggle"
+    msg_type: BoolStamped
+    trigger: True
+  cnn_lane_following_off:
+    default: True
+    topic: "joy_mapper_node/cnn_lane_toggle"
+    msg_type: BoolStamped
+    trigger: False
 
   charging_exit:
     default: False
@@ -118,12 +128,13 @@ gates:
       - joystick_override_off
       - deep_lane_following_on
     output_topic: "~joystick_override_off_and_deep_lane_on"
-  joystick_override_off_and_deep_lane_off:
+  joystick_override_off_and_deep_lane_off_and_cnn_lane_following_off:
     gate_type: "AND"
     inputs:
       - joystick_override_off
       - deep_lane_following_off
-    output_topic: "~joystick_override_off_and_deep_lane_off"
+      - cnn_lane_following_off
+    output_topic: "~joystick_override_off_and_deep_lane_off_and_cnn_lane_following_off"
   intersection_done_and_deep_lane_off:
     gate_type: "AND"
     inputs:
@@ -136,6 +147,19 @@ gates:
       - intersection_done
       - deep_lane_following_on
     output_topic: "~intersection_done_and_deep_lane_on"
+  joystick_override_off_and_cnn_lane_following_on:
+    gate_type: "AND"
+    inputs:
+      - joystick_override_off
+      - cnn_lane_following_on
+    output_topic: "~joystick_override_off_and_cnn_lane_following_on"
+  joystick_override_on_and_cnn_lane_following_off:
+    gate_type: "AND"
+    inputs:
+      - joystick_override_on
+      - cnn_lane_following_off
+    output_topic: "~joystick_override_on_and_cnn_lane_following_off"
+
 
   at_stop_line_and_charging_exit:
     gate_type: "AND"
